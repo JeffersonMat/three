@@ -24,7 +24,7 @@ const renderer = new THREE.WebGLRenderer({
 
 //GLTF Model
 
-const daftPunkModel = "/images/spartan/scene.gltf"
+const haloModel = "/images/spartan/scene.gltf"
 
 //Camera setup
 
@@ -66,7 +66,7 @@ function drawBox(objectwidth, objectheight, objectdepth) {
 }
 
 const addGLTFObjectIntoScene = () => {
-  loader.load(daftPunkModel, (gltf) => {
+  loader.load(haloModel, (gltf) => {
 
   //It adds the object as a group, by creating a box that encapsulated the model to DragController
   //The group is added to the scene globally to run the dragController that handles the box
