@@ -24,7 +24,7 @@ const renderer = new THREE.WebGLRenderer({
 
 //GLTF Model
 
-const daftPunkModel = "/images/daft_punk/scene.gltf"
+const daftPunkModel = "/images/spartan/scene.gltf"
 
 //Camera setup
 
@@ -33,7 +33,7 @@ const sizes = {
   height: window.innerHeight,
 }
 const camera = new THREE.PerspectiveCamera(
-  60,
+  3,
   sizes.width / sizes.height,
   1,
   5000
@@ -132,13 +132,13 @@ const gui = new dat.GUI()
 
 //Lights handlers
 
-const pointLight = new THREE.PointLight(0x757535, 200, 200);
+const pointLight = new THREE.PointLight(0x757535, 10, 40);
 
 pointLight.position.x = 40;
 pointLight.position.y = 0;
 pointLight.position.z= 80 //#757535 //40 0 80
 
-const lightDirection = new THREE.DirectionalLight(0x645757, 200, 200);
+const lightDirection = new THREE.DirectionalLight(0x000000, 100, 100);
 
 lightDirection.castShadow = true
 lightDirection.position.set(10, 0, -1)
@@ -148,13 +148,13 @@ lightDirection.shadow.camera.near = 1 // default
 lightDirection.shadow.camera.far = 500 // default
 
 
-const amlight = new THREE.AmbientLight(0xf5f5f5, 200, 200)
+const amlight = new THREE.AmbientLight(0x751d1d, 1, 10)
 amlight.position.set(0, 1, 0);
 
-const hemiLight = new THREE.HemisphereLight(0xf5f5f5, 0xf5f5f5, 120, 120)
+const hemiLight = new THREE.HemisphereLight(0x0000, 0xf5f5f5, 10, 10)
 hemiLight.position.set(1, 0, 0);
 
-const dirLight = new THREE.DirectionalLight(0xf0ba4b, 220, 200)
+const dirLight = new THREE.DirectionalLight(0x134103, 10, 10)
 dirLight.position.set(0, 1, 0);
 
 const col = { colour: "#f5f5f5" }
@@ -169,6 +169,16 @@ gui.addColor(col, "colour").onChange(() => {
 gui.addColor(col, "colour").onChange(() => {
   lightDirection.color.set(col.colour)
 });
+
+gui.addColor(col, "colour").onChange(() => {
+  hemiLight.color.set(col.colour)
+})
+
+gui.addColor(col, "colour").onChange(() => {
+ pointLight.color.set(col.colour)
+})
+
+
 
 
 
@@ -224,7 +234,7 @@ const init = () => {
   scene.add(amlight)
   scene.add(lightDirection)
 
-  renderer.setClearColor(0xffffff)
+  renderer.setClearColor(0x000000)
   tick()
 }
 
